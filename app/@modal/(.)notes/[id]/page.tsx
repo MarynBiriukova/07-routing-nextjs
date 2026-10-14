@@ -1,12 +1,17 @@
 
 import { fetchNoteById } from '@/lib/api';
 import Modal from '@/components/Modal/Modal';
+import { connection } from 'next/server';
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
+
 const NotePreview = async ({ params }: Props) => {
+
+    await connection();
+    
   const { id } = await params;
   const note = await fetchNoteById(id);
 
