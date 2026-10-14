@@ -111,8 +111,8 @@ const Notes = ({tag}: NotesProps) => {
       />
 )}
 {isModalOpen && (
-              <Modal
-                  onClose={() => setIsModalOpen(false)}>
+              <Modal onClose = {() => setIsModalOpen(false)}>
+                  
           <NoteForm onClose={() => setIsModalOpen(false)} />
         </Modal>
       )}
@@ -123,3 +123,4 @@ const Notes = ({tag}: NotesProps) => {
 }
 
 export default Notes;
+//
