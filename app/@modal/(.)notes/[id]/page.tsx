@@ -1,4 +1,4 @@
-
+/*
 import { fetchNoteById } from '@/lib/api';
 import Modal from '@/components/Modal/Modal';
 import { connection } from 'next/server';
@@ -23,8 +23,28 @@ const NotePreview = async ({ params }: Props) => {
   );
 };
 
-export default NotePreview;
+export default NotePreview;*/
+//************************************************************************** */
+import { connection } from 'next/server';
+import { fetchNoteById } from '@/lib/api';
+import NotePreviewClient from './NotePreview.client';
 
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+const NotePreviewPage = async ({ params }: Props) => {
+  // Гарантируем динамический запрос данных в Next.js 16
+  await connection(); 
+
+  const { id } = await params;
+  const note = await fetchNoteById(id);
+
+  // Передаем полученные на сервере данные в клиентскую модалку
+  return <NotePreviewClient note={note} />;
+};
+
+export default NotePreviewPage;
 
 //************************************************************************** */import { fetchNoteById } from '@/lib/api';
 /*'use client'
